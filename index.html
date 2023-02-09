@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+
+  button {
+    border: solid 2px red;
+    border-radius: 20px;
+    background-color: orange;
+    padding: 20px;
+  }
+
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #d0ecff;
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  .bg_on {
+    background-image: linear-gradient(#2196F3 2px, transparent 2px), linear-gradient(to right, #2196F3 2px, #d0ecff 2px);
+    background-size: 40px 40px;
+  }
+
+  button {
+    border: solid 5px #2196F3;
+    border-radius: 20px;
+    background-color: orange;
+    padding: 20px;
+    color: red;
+    font-size: x-large;
+    font-weight: bold;
+  }
+
+
+
+  .balloon5 {
+    width: 100%;
+    margin: 1.5em 0;
+    overflow: hidden;
+  }
+
+  .balloon5 .faceicon {
+    float: left;
+    margin-right: -90px;
+    width: 80px;
+  }
+
+  .balloon5 .faceicon img {
+    width: 100%;
+    height: auto;
+    border: solid 3px #d7ebfe;
+    border-radius: 50%;
+  }
+
+  .balloon5 .chatting {
+    width: 100%;
+  }
+
+  .says {
+    display: inline-block;
+    position: relative;
+    margin: 5px 0 0 105px;
+    padding: 17px 13px;
+    border-radius: 12px;
+    background: #d7ebfe;
+  }
+
+  .says:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 18px;
+    left: -24px;
+    border: 12px solid transparent;
+    border-right: 12px solid #d7ebfe;
+  }
+
+  .says p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .balloon2-left {
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 0 1.5em 15px;
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #FFF;
+    border: solid 3px #555;
+    box-sizing: border-box;
+  }
+
+  .balloon2-left:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -24px;
+    margin-top: -12px;
+    border: 12px solid transparent;
+    border-right: 12px solid #FFF;
+    z-index: 2;
+  }
+
+  .balloon2-left:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    margin-top: -14px;
+    border: 14px solid transparent;
+    border-right: 14px solid #555;
+    z-index: 1;
+  }
+
+  .balloon2-left p {
+    margin: 0;
+    padding: 0;
+  }
+
+  h2 {
+    position: relative;
+    display: table-cell;
+    padding: 0 45px;
+  }
+
+  h2:before,
+  h2:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    width: 44px;
+    height: 2px;
+    background-color: black;
+  }
+
+  h2:before {
+    left: 0;
+    transform: rotate(60deg);
+  }
+
+  h2:after {
+    right: 0;
+    transform: rotate(-60deg);
+  }
+
+
+
+
+
+
+  h1 {
+    position: relative;
+    display: table-cell;
+    padding-left: 55px;
+  }
+
+  h1:before {
+    position: absolute;
+    content: '';
+    top: calc(50% - 5px);
+    width: 40px;
+    left: 0;
+    height: 6px;
+    border-top: solid 6px #27acd9;
+  }
+</style>
+
+
+
+
+    <script>
+      let result = [];
+      let rValue2;
+      let clear = 0;
+      let fal = 0;
+      let all1 = 0;
+      let rate = 0;
+      let rValue;
+      let about;
+      let rows;
+      const img = ["ca_recruitwomen201.png", "ca_recruitwomen202.png", "ca_recruitwomen203.png"];
+
+
+
+　　　//window.onloadを表示させることでクリックさせて最初から音声が鳴らせるよう工夫した
+      window.onload = function () {　// ブラウザにコンテンツがロードされたときに1度だけ呼ばれる関数
+        //全部にクリックと表示させる
+        let starttouch = ["クリック", "クリック", "クリック"];
+        let arai = document.querySelectorAll('button[id^=button]');
+        arai.forEach((e, i) => e.textContent = starttouch[i]);
+        //どのボタンを押してもdemo1が呼ばれる
+        document.getElementById("button1").addEventListener('click', demo1, false)
+        document.getElementById("button2").addEventListener('click', demo1, false)
+        document.getElementById("button3").addEventListener('click', demo1, false)
+        
+      }
+
+
+
+
+      async function demo1() {
+        // form要素内のラジオボタングループ
+        var element1 = document.getElementById("target");
+
+        // form要素内のラジオボタングループ(name="hoge1")を取得
+        var radioNodeList = element1.hoge1;
+
+        // 選択状態の値(value)を取得 
+        about = radioNodeList.value;
+        pic.src = img[1];
+        let d = result = await getCSV(about);
+        let btns = document.querySelectorAll('button[id^=button]');
+        //csvから取得
+        let a = Math.floor(Math.random() * rows.length);
+        let b = Math.floor(Math.random() * rows.length);
+        let c = Math.floor(Math.random() * rows.length);
+        let listrandom = [a, b, c];
+        let g = listrandom[Math.floor(Math.random() * listrandom.length)];
+        let text = [d[a][2], d[b][2], d[c][2]];
+        btns.forEach((e, i) => e.textContent = text[i]);
+        let rand = Math.floor(Math.random() * (rows.length))
+        rValue = d[g][1];//中国語音声
+        rValue2 = d[g][2];//中国語音声の日本語
+        speak(rValue)//中国語音声
+
+        const target1 = document.getElementById('button1');
+        const target2 = document.getElementById('button3');
+        const target3 = document.getElementById('button2');
+
+        //マウスが要素上に入った時に色が変わる・元に戻る
+        target1.addEventListener('mouseover', () => {
+          target1.style.background = '#FFFFFF';
+        }, false);
+        target2.addEventListener('mouseover', () => {
+          target2.style.background = '#FFFFFF';
+        }, false);
+        target3.addEventListener('mouseover', () => {
+          target3.style.background = '#FFFFFF';
+        }, false);
+        target1.addEventListener('mouseleave', () => {
+          target1.style.background = '#FFA500';
+        }, false);
+        target2.addEventListener('mouseleave', () => {
+          target2.style.background = '#FFA500';
+        }, false);
+        target3.addEventListener('mouseleave', () => {
+          target3.style.background = '#FFA500';
+        }, false);
+
+       //正解、不正解を判断する関数hogeを呼び出す
+        document.getElementById("button1").addEventListener('click', hoge, false)
+        document.getElementById("button2").addEventListener('click', hoge, false)
+        document.getElementById("button3").addEventListener('click', hoge, false)
+      //またdemo1が呼び出される・繰り返し
+        document.getElementById("button1").addEventListener('click', demo1, false)
+        document.getElementById("button2").addEventListener('click', demo1, false)
+        document.getElementById("button3").addEventListener('click', demo1, false)
+
+
+
+      }
+
+
+
+　　　//csvファイルの読み込み
+      async function getCSV(fn) {
+        let res = await fetch(fn);
+        let txt = await res.text();
+        rows = txt.split(/\r\n|\r|\n/g);
+        data = rows.map(r => r.split(/\t|\,/g));
+        return data;
+      }
+
+      
+      function hoge(e) {
+        //問題(中国語音声)の日本語と、回答があっているか確認する
+//あっている場合
+        if (e.target.innerHTML == rValue2) {
+          //正解数
+          clear = clear + 1;
+          ///問題数
+          all1 = all1 + 1;
+           //正答率(四捨五入なし)
+          rate = clear / all1;
+          //間違えの数
+          fal = fal;
+          //こたえがしっかりと表示されるように
+          document.getElementById("answer").innerHTML = "先ほどの正解は" + rValue + "(※日本語訳：" + rValue2 + ")";
+          //あっているか確認
+          document.getElementById("sayss").innerHTML = "合っています";
+          //正答率の表示
+          document.getElementById("rate2").innerHTML = "現在の合計正答率:" + (Math.round(rate * 100)) + "%";
+          //アイコンの女性の表情が驚きに変わる！
+          pic.src = img[0];
+
+//間違えた場合
+        } else {
+          //間違えの数
+          fal = fal + 1;
+          //問題数
+          all1 = all1 + 1;
+          //正答率(四捨五入なし)
+          rate = clear / all1;
+          document.getElementById("answer").innerHTML = "先ほどの正解は" + rValue + "(※日本語訳：" + rValue2 + ")";
+          document.getElementById("sayss").innerHTML = "間違っています";
+          document.getElementById("rate2").innerHTML = "現在の合計正答率:" + (Math.round(rate * 100)) + "%";
+          //アイコンの女性表情が曇る！
+          pic.src = img[1];
+
+        }
+      }
+
+//話す関数
+      function speak(sentence) {
+        var ssu = new SpeechSynthesisUtterance();
+        ssu.volume = 1;
+        ssu.rate = 1;
+        ssu.pitch = 1;
+        ssu.text = sentence;
+        ssu.lang = 'zh-cn';
+        // ssu.lang = 'en-US'; // 英語を話させたいときはこちら
+        speechSynthesis.speak(ssu);
+      }
+      ;
+
+
+
+
+    </script>
+    </head>
+
+    <body>
+      <title>中国语道场</title>
+<h1>
+  中国听力道场</h1>
+<br>
+<h2>中国語リスニング道場</h2>
+
+<br>
+<div class="balloon5">
+  <div class="faceicon">
+    <img id="pic" src="16_2_489.png">
+  </div>
+  <div class="chatting">
+    <div class="says">
+      <div id="sayss">ボタンをクリックすると問題がスタート</div>
+    </div>
+  </div>
+</div>
+　<div class="bg bg_on"></div>
+<button id="button1">0</button>
+<button id="button2">0</button>
+<button id="button3">0</button>
+<br>
+<br>
+<br>
+<div class="h33">
+  <div class="balloon2-left">
+    <div id="rate2">まだ未回答の状態です</div>
+    <div id="answer">まだ未回答の状態です</div>
+  </div>
+
+
+
+  <div class="balloon5">
+    <div class="faceicon">
+      <img src="16_2_489.png">
+    </div>
+    <div class="chatting">
+      <div class="says">
+        <div id="sayss">下から問題のレベルを変更できます</div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <form id="target">
+        <input name="hoge1" type="radio" value="HSK1level-word-japanese.csv" checked="checked"> HSK1級レベル
+        <input name="hoge1" type="radio" value="HSK2evel-word-japanese.csv"> HSK2級レベル
+        <input name="hoge1" type="radio" value="HSK3evel-word-japanese.csv"> HSK3級レベル
+        <input name="hoge1" type="radio" value="HSK4evel-word-japanese.csv"> HSK4級レベル
+        <input name="hoge1" type="radio" value="HSK5evel-word-japanese.csv"> HSK5級レベル
+      </form>
+    </div>
+
+    </body>
+
+</html>
